@@ -1,7 +1,7 @@
 'use strict';
 
-const EventEmitter = require('node:events');
-const process = require('node:process');
+const EventEmitter = typeof window !== 'undefined' ? require('events') : require('node:events');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const RESTManager = require('../rest/RESTManager');
 const Options = require('../util/Options');
 const Util = require('../util/Util');

@@ -1,8 +1,10 @@
 'use strict';
 
-const EventEmitter = require('node:events');
-const { setImmediate } = require('node:timers');
-const { setTimeout: sleep } = require('node:timers/promises');
+const EventEmitter = require('events');
+// eslint-disable-next-line no-restricted-globals
+const setImmediate = (typeof globalThis !== 'undefined' && globalThis.setImmediate) || (fn => setTimeout(fn, 0));
+// eslint-disable-next-line no-restricted-globals
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const { Collection } = require('@discordjs/collection');
 const { RPCErrorCodes } = require('discord-api-types/v10');
 const WebSocketShard = require('./WebSocketShard');

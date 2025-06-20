@@ -1,7 +1,7 @@
 'use strict';
 
-const EventEmitter = require('node:events');
-const { setTimeout, setInterval, clearTimeout } = require('node:timers');
+const EventEmitter = require('events');
+const { setTimeout, setInterval, clearTimeout } = typeof globalThis !== 'undefined' ? globalThis : require('timers');
 const WebSocket = require('../../WebSocket');
 const { Status, Events, ShardEvents, Opcodes, WSEvents, WSCodes } = require('../../util/Constants');
 const Intents = require('../../util/Intents');

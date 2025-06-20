@@ -1,13 +1,15 @@
 /* eslint-disable no-unreachable */
 'use strict';
 
-const process = require('node:process');
-const { setInterval } = require('node:timers');
-const { setTimeout } = require('node:timers');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
+// eslint-disable-next-line no-undef
+const { setInterval } = typeof window !== 'undefined' ? { setInterval: window.setInterval } : require('node:timers');
+// eslint-disable-next-line no-undef
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: window.setTimeout } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const BaseClient = require('./BaseClient');
 const ActionsManager = require('./actions/ActionsManager');
-const ClientVoiceManager = require('./voice/ClientVoiceManager');
+
 const WebSocketManager = require('./websocket/WebSocketManager');
 const { Error, TypeError } = require('../errors');
 const BaseGuildEmojiManager = require('../managers/BaseGuildEmojiManager');
@@ -20,7 +22,7 @@ const RelationshipManager = require('../managers/RelationshipManager');
 const SessionManager = require('../managers/SessionManager');
 const UserManager = require('../managers/UserManager');
 const UserNoteManager = require('../managers/UserNoteManager');
-const VoiceStateManager = require('../managers/VoiceStateManager');
+
 const ShardClientUtil = require('../sharding/ShardClientUtil');
 const ClientPresence = require('../structures/ClientPresence');
 const GuildPreview = require('../structures/GuildPreview');
@@ -77,18 +79,6 @@ class Client extends BaseClient {
      * @private
      */
     this.actions = new ActionsManager(this);
-
-    /**
-     * The voice manager of the client
-     * @type {ClientVoiceManager}
-     */
-    this.voice = new ClientVoiceManager(this);
-
-    /**
-     * A manager of the voice states of this client (Support DM / Group DM)
-     * @type {VoiceStateManager}
-     */
-    this.voiceStates = new VoiceStateManager({ client: this });
 
     /**
      * Shard helpers for the client (only if the process was spawned from a {@link ShardingManager})

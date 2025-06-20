@@ -3,12 +3,7 @@
 // "Root" classes (starting points)
 exports.BaseClient = require('./client/BaseClient');
 exports.Client = require('./client/Client');
-/** @deprecated This will be removed in the next major version */
-exports.Shard = require('./sharding/Shard');
-/** @deprecated This will be removed in the next major version */
-exports.ShardClientUtil = require('./sharding/ShardClientUtil');
-/** @deprecated This will be removed in the next major version */
-exports.ShardingManager = require('./sharding/ShardingManager');
+
 exports.WebhookClient = require('./client/WebhookClient');
 
 // Utilities
@@ -46,7 +41,6 @@ exports.AutoModerationRuleManager = require('./managers/AutoModerationRuleManage
 exports.BaseGuildEmojiManager = require('./managers/BaseGuildEmojiManager');
 exports.CachedManager = require('./managers/CachedManager');
 exports.ChannelManager = require('./managers/ChannelManager');
-exports.ClientVoiceManager = require('./client/voice/ClientVoiceManager');
 exports.DataManager = require('./managers/DataManager');
 exports.GuildBanManager = require('./managers/GuildBanManager');
 exports.GuildChannelManager = require('./managers/GuildChannelManager');
@@ -69,7 +63,6 @@ exports.StageInstanceManager = require('./managers/StageInstanceManager');
 exports.ThreadManager = require('./managers/ThreadManager');
 exports.ThreadMemberManager = require('./managers/ThreadMemberManager');
 exports.UserManager = require('./managers/UserManager');
-exports.VoiceStateManager = require('./managers/VoiceStateManager');
 exports.WebSocketManager = require('./client/websocket/WebSocketManager');
 exports.WebSocketShard = require('./client/websocket/WebSocketShard');
 exports.RelationshipManager = require('./managers/RelationshipManager');
@@ -164,8 +157,6 @@ exports.CustomStatus = require('./structures/Presence').CustomStatus;
 exports.RichPresence = require('./structures/Presence').RichPresence;
 exports.SpotifyRPC = require('./structures/Presence').SpotifyRPC;
 exports.WebEmbed = require('./structures/WebEmbed');
-exports.DiscordAuthWebsocket = require('./util/RemoteAuth');
 exports.PurchasedFlags = require('./util/PurchasedFlags');
 exports.Poll = require('./structures/Poll').Poll;
 exports.PollAnswer = require('./structures/PollAnswer').PollAnswer;
-exports.Recorder = require('./client/voice/receiver/Recorder');

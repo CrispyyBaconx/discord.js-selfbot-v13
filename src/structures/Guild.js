@@ -22,7 +22,7 @@ const GuildStickerManager = require('../managers/GuildStickerManager');
 const PresenceManager = require('../managers/PresenceManager');
 const RoleManager = require('../managers/RoleManager');
 const StageInstanceManager = require('../managers/StageInstanceManager');
-const VoiceStateManager = require('../managers/VoiceStateManager');
+
 const {
   ChannelTypes,
   DefaultMessageNotificationLevels,
@@ -87,12 +87,6 @@ class Guild extends AnonymousGuild {
      * @type {PresenceManager}
      */
     this.presences = new PresenceManager(this.client);
-
-    /**
-     * A manager of the voice states of this guild
-     * @type {VoiceStateManager}
-     */
-    this.voiceStates = new VoiceStateManager(this);
 
     /**
      * A manager of the stage instances of this guild
